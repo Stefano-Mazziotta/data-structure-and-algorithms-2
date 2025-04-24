@@ -1,0 +1,23 @@
+- types 
+- persistent structures 
+- data structures 
+- binary search tree
+- balanced trees
+- red black tree
+- leftist heaps
+
+parcial
+
+- notacion asintotica
+- modelos de costos
+- funciones de recurrencia
+- 
+- parcial
+
+- tac - tipo abstracto de datos
+- induccion estructural
+parcial
+
+---------------------
+parcial 25/04
+entran foldr,filter y map

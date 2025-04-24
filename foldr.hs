@@ -1,0 +1,1 @@
+mymap g xs = foldr (/y ys -> g y:ys) [] xs

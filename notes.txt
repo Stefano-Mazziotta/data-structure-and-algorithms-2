@@ -1,0 +1,20 @@
+predicados -> funciones que devuelven bool
+
+funciones:
+concat
+factors -> devuelve los divisores
+zip
+
+funcion recursiva
+ocurre cuando la funcion aparece del lado derecho del igual.
+
+recursion de cola - recibe 2 argumentos. el segundo es el resultado.
+
+factorial 0 y = y
+factorial x y = factorial (x - 1) (x * y)
+
+factorial 2 1
+
+- hit es una estructura
+- minHits -> monticulos
+- los hijos de un nodo son mas chicos que su padre.
