@@ -16,17 +16,21 @@ myfilter p xs = foldr (\y ys -> if p y then y:ys else ys) [] xs
 myunzip::[(a,b)] -> ([a],[b])
 myunzip xs = foldr (\(a, b) (as, bs) -> (a:as, b:bs)) ([], []) xs
 
-{--
-d) pair2List ::(a , [ b ]) →[(a , b)] que dado un par formado por un valor x y una lista xs convierta
-a la lista xs en una lista de pares, formada con los elementos de xs y x .
-Ej. pair2List (x , [ y1 , y2 , y3 ]) = [(x , y1 ), (x , y2 ), (x , y3 )]
+-- d) pair2List::(a,[b]) -> [(a,b)] 
+-- dado un par formado por un valor x y una lista xs convierta a la lista xs en una lista de pares,
+-- formada con los elementos de xs y x.
 
-e) maxSec :: [ (Int, Int)] → (Int, Int), que dada una lista de pares de naturales que represente a
-una lista de segmentos de la recta, calcule el segmento m ́as largo de la misma.
-Ej.maxSec [(1, 2), (0, 7), (4, 6)] = (0, 7)
+-- Ej. pair2List (x , [ y1 , y2 , y3 ]) = [(x , y1 ), (x , y2 ), (x , y3 )]
+pair2List::(a,[b]) -> [(a,b)]
+pair2List (x, xs) = foldr (\y ys -> (x, y):ys) [] xs
+
+-- e) maxSec :: [ (Int, Int)] → (Int, Int), que dada una lista de pares de naturales que represente a
+-- una lista de segmentos de la recta, calcule el segmento m ́as largo de la misma.
+-- Ej.maxSec [(1, 2), (0, 7), (4, 6)] = (0, 7)
+{--
+
 Puede definir una funci ́on auxiliar maxL :: (Int, Int) → (Int, Int) → (Int, Int), que dados dos
 pares de naturales que representan a dos segmentos de la recta, devuelva el segmento cuya
 longitud sea m ́axima.
 Ej.maxL (1, 2) (0, 7) = (0, 7).
-Pr ́actica Haskell P ́agina 3
 --}
