@@ -24,13 +24,24 @@ myunzip xs = foldr (\(a, b) (as, bs) -> (a:as, b:bs)) ([], []) xs
 pair2List::(a,[b]) -> [(a,b)]
 pair2List (x, xs) = foldr (\y ys -> (x, y):ys) [] xs
 
--- e) maxSec :: [ (Int, Int)] → (Int, Int), que dada una lista de pares de naturales que represente a
--- una lista de segmentos de la recta, calcule el segmento m ́as largo de la misma.
--- Ej.maxSec [(1, 2), (0, 7), (4, 6)] = (0, 7)
 {--
+e) maxSec :: [ (Int, Int)] → (Int, Int)
+Dada una lista de pares de naturales que represente a una lista de segmentos de la recta,
+calcule el segmento más largo de la misma.
 
-Puede definir una funci ́on auxiliar maxL :: (Int, Int) → (Int, Int) → (Int, Int), que dados dos
-pares de naturales que representan a dos segmentos de la recta, devuelva el segmento cuya
-longitud sea m ́axima.
+Ej.maxSec [(1, 2), (0, 7), (4, 6)] = (0, 7)
+
+Puede definir una función auxiliar maxL::(Int, Int)-> (Int, Int) -> (Int, Int), 
+Dados dos pares de naturales que representan a dos segmentos de la recta,
+devuelva el segmento cuya longitud sea máxima.
 Ej.maxL (1, 2) (0, 7) = (0, 7).
 --}
+
+maxL::(Int, Int) -> (Int, Int) -> (Int, Int)
+maxL (a, b) (x,y) = 
+    let longitudA = b-a
+        longitudB = y-x
+    in if longitudA > longitudB then (a,b) else (x,y)
+
+maxSec::[(Int, Int)] -> (Int, Int)
+maxSec xs = foldr (\(x,y) (acc1,acc2) -> maxL (x,y) (acc1, acc2)) (0,0) xs
