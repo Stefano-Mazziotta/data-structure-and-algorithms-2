@@ -8,12 +8,15 @@ mymap g xs = foldr (\y ys -> g y:ys) [] xs
 myfilter::(a -> Bool) -> [a] -> [a]
 myfilter p xs = foldr (\y ys -> if p y then y:ys else ys) [] xs
 
+-- c) unzip :: [(a , b)] →([a ], [ b ]), 
+-- Dada una lista de tuplas xs retorna una tupla de listas 
+-- donde cada una corresponde a los primeros y segundos elementos de los pares respectivamente.
+-- Ej. unzip [(’a’, 1), (’z’, 7), (’h’, 9)] = ("azh", [1, 7, 9])
+
+myunzip::[(a,b)] -> ([a],[b])
+myunzip xs = foldr (\(a, b) (as, bs) -> (a:as, b:bs)) ([], []) xs
+
 {--
-
-c) unzip :: [(a , b)] →([a ], [ b ]), que dada una lista de tuplas xs retorna una tupla de listas donde
-cada una corresponde a los primeros y secundos elementos de los pares respectivamente.
-Ej. unzip [(’a’, 1), (’z’, 7), (’h’, 9)] = ("azh", [1, 7, 9])
-
 d) pair2List ::(a , [ b ]) →[(a , b)] que dado un par formado por un valor x y una lista xs convierta
 a la lista xs en una lista de pares, formada con los elementos de xs y x .
 Ej. pair2List (x , [ y1 , y2 , y3 ]) = [(x , y1 ), (x , y2 ), (x , y3 )]
