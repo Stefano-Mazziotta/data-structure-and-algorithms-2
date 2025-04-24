@@ -1,10 +1,14 @@
 -- 5. definir las siguientes funciones usando foldr:
 -- a) map::(a → b) → [ a ] → [b ] que dada una funci ́on y una lista, aplica la función a cada elemento de la lista.
-map'
+mymap::(a -> b) -> [a] -> [b]
+mymap g xs = foldr (\y ys -> g y:ys) [] xs
+
+-- b) filter :: (a → Bool) → [ a ] → [ a ]
+-- dado un predicado y una lista xs, devuelve una lista con los elementos de xs que satisfacen el predicado.
+myfilter::(a -> Bool) -> [a] -> [a]
+myfilter p xs = foldr (\y ys -> if p y then y:ys else ys) [] xs
 
 {--
-b) filter :: (a → Bool) → [ a ] → [ a ] , que dado un predicado y una lista xs, devuelve una lista
-con los elementos de xs que satisfacen el predicado.
 
 c) unzip :: [(a , b)] →([a ], [ b ]), que dada una lista de tuplas xs retorna una tupla de listas donde
 cada una corresponde a los primeros y secundos elementos de los pares respectivamente.
