@@ -37,4 +37,4 @@ foo8 a b = if b a then a else [ ]
 
 -- i) muuy rara esta funcion
 -- foo9 :: a -> (a -> Bool) -> [a]
--- foo9 a b = if b a then head (:a) else (:[ ])
+-- foo9 a b = if b a then head (:a) else (:[])
