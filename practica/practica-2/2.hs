@@ -1,12 +1,13 @@
--- 2. Consideremos un editor de l ́ıneas simple. Supongamos que una L ́ınea es una secuencia de
--- caracteres c1, c2, . . . , cnjunto con una posici ́on p, siendo 0 6p 6n, llamada cursor (consideraremos
+-- 2. Consideremos un editor de líneas simple. Supongamos que una Línea es una secuencia de
+-- caracteres c1, c2, . . . , cnjunto con una posición p, siendo 0 6p 6n, llamada cursor (consideraremos
 -- al cursor a la izquierda de un caracter que ser ́a borrado o insertado, es decir como el cursor de la
--- mayor ́ıa de los editores). Se requieren las siguientes operaciones sobre l ́ıneas:
--- vac ́ıa :: L ́ınea
--- moverIzq :: L ́ınea →L ́ınea
--- moverDer :: L ́ınea →L ́ınea
--- moverIni :: L ́ınea →L ́ınea
--- moverFin :: L ́ınea →L ́ınea
+-- mayoría de los editores). 
+-- Se requieren las siguientes operaciones sobre líneas:
+-- vacia :: Linea
+-- moverIzq :: Linea →Linea
+-- moverDer :: Linea →Linea
+-- moverIni :: Linea →Linea
+-- moverFin :: Linea → Linea
 -- insertar :: Char →L ́ınea →L ́ınea
 -- borrar :: L ́ınea →L ́ınea
 -- La descripci ́on informal es la siguiente: (1) la constante vac ́ıa denota la l ́ınea vac ́ıa, (2) la ope-
@@ -51,8 +52,11 @@ insert :: Char -> Line -> Line
 insert c (cs, p) = (ins c p cs, (p+1))  
 -- $ para concatenar funciones
 
-borrar:: Line -> Line
+rm (c:cs) 1 = cs
+rm (c:cs) p 
+    | p > (length cs + 1) || p < 0 = error "out of range"
+    | otherwise = c:rm cs (p-1)
 
--- Line (String, String) 
--- 1er arg caracteres anteriores al cursor
--- 2do arg caracteres posterior al cursor 
+remove:: Line -> Line
+remove (cs, 0) = (cs, 0) 
+remove (cs, p) = (rm cs p, (p-1))
