@@ -22,7 +22,7 @@ a) Implementar las operaciones de este tipo algebraico teniendo en cuenta que:
 ['a', 'b', 'c', 'd'] -> Consnoc 'a' (Consnoc 'b' EmptyCL 'c' ) 'd'
 
 [[],[1], [1,2]]
-Consnoc (EmptyCL CUnit 1 (Consnoc 1 EmptyCL 2))
+Consnoc (EmptyCL (CUnit 1) (Consnoc 1 EmptyCL 2))
 --}
 
 data CList a = EmptyCL | CUnit a | Consnoc a (CList a) a deriving Show
@@ -59,12 +59,13 @@ reverseCL (Consnoc x xs z) = Consnoc z (reverseCL xs) x
     
 initsCL'::CList a -> CList (CList a)
 initsCL' EmptyCL = EmptyCL
-initsCL' (CUnit x) =  
+initsCL' (CUnit x) = Consnoc (EmptyCL) EmptyCL (CUnit x)  
 initsCL' xs = snoc (initsCL' (popLastCL xs)) xs
 
 {--
 d Definir una función lasts que toma una CList y devuelve una CList con todas las posibles terminaciones de la CList.
 inits [1,2,3,4]-> [[],[1], [1,2], [1,2,3], [1,2,3,4]]
+
 
 e) Definir una función concatCL que toma una CList de CList y devuelve la CList con todas ellas concatenadas
 --}
@@ -80,7 +81,7 @@ cons x (Consnoc y ys z) = Consnoc x (cons y ys) z
 snoc:: CList a -> a -> CList a
 snoc EmptyCL x = CUnit x
 snoc (CUnit y) x = Consnoc y EmptyCL x
-snoc (Consnoc y ys z) x = Consnoc z (snoc ys y) x
+snoc (Consnoc y ys z) x = Consnoc y (snoc ys z) x
 
 popLastCL:: CList a -> CList a
 popLastCL EmptyCL = EmptyCL
